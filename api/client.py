@@ -1,4 +1,17 @@
+import time
 import requests
+
 def get_request(url):
-    response = requests.get(url)         #Send an HTTP GET request to this URL.
-    return response
+    try:
+        start = time.time()
+
+        response = requests.get(url)
+
+        end = time.time()
+        response_time = end - start
+
+        return response, response_time
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error: {e}")
+        return None, None

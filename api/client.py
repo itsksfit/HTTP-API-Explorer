@@ -1,13 +1,16 @@
 import time
+
 import requests
 
-def get_request(url):
+
+def send_request(method, url):
     try:
-        start = time.time()
+        start = time.perf_counter()
 
-        response = requests.get(url)
+        response = requests.request(method, url)
 
-        end = time.time()
+        end = time.perf_counter()
+
         response_time = end - start
 
         return response, response_time

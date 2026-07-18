@@ -4,17 +4,15 @@ A simple command-line HTTP client built with Python to understand how APIs work.
 
 ## Features
 
-- ✅ Send HTTP GET requests
-- ✅ Display HTTP status codes
-- ✅ Measure API response time
-- ✅ Parse JSON responses
-- ✅ Display HTTP response headers
-- ✅ Handle invalid URLs gracefully
-- 🚧 Support POST requests
-- 🚧 Support PUT requests
-- 🚧 Support DELETE requests
-- 🚧 Request history
-- 🚧 Pretty JSON output
+- ✅ GET Requests
+- ✅ POST Requests
+- ✅ PUT Requests
+- ✅ DELETE Requests
+- ✅ Response Time
+- ✅ Pretty JSON Output
+- ✅ Response Headers
+- ✅ Error Handling
+- 🚧 Request History
 
 ## Tech Stack
 

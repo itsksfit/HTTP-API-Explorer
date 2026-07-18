@@ -1,4 +1,6 @@
-from api.client import get_request
+import json
+
+from api.client import send_request
 
 
 def main():
@@ -6,27 +8,47 @@ def main():
     print("HTTP API Explorer")
     print("=" * 40)
 
-    url = input("Enter API URL: ")
+    print("1. GET")
+    print("2. POST")
+    print("3. PUT")
+    print("4. DELETE")
+
+    choice = input("\nSelect Method: ")
+
+    methods = {
+        "1": "GET",
+        "2": "POST",
+        "3": "PUT",
+        "4": "DELETE"
+    }
+
+    method = methods.get(choice)
+
+    if method is None:
+        print("Invalid Choice")
+        return
+
+    url = input("\nEnter API URL: ")
 
     print("\nSending Request...\n")
 
-    response, response_time = get_request(url)
+    response, response_time = send_request(method, url)
 
     if response is None:
         return
 
+    print(f"Method        : {method}")
     print(f"Response Time : {response_time:.2f} seconds")
-    print(f"Status Code : {response.status_code}")
+    print(f"Status Code   : {response.status_code}")
 
-    print("\nResponse:\n")
+    print("\nJSON Response\n")
 
-    data = response.json()
+    try:
+        print(json.dumps(response.json(), indent=4))
+    except ValueError:
+        print("Response is not JSON.")
 
-    print(f"Current User URL : {data.get('current_user_url', 'N/A')}")
-    print(f"Repository Search : {data.get('repository_search_url', 'N/A')}")
-    print(f"Repository URL : {data.get('repository_url', 'N/A')}")
-
-    print("\nHeaders:\n")
+    print("\nHeaders\n")
 
     for key, value in response.headers.items():
         print(f"{key}: {value}")

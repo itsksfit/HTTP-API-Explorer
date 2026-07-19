@@ -1,6 +1,4 @@
 from datetime import datetime
-
-
 def save_request(method, url, status_code, response_time):
     with open("history/requests.log", "a") as file:
         file.write(f"Time   : {datetime.now()}\n")

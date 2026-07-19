@@ -1,5 +1,5 @@
 import json
-
+from history.logger import save_request
 from api.client import send_request
 
 
@@ -33,9 +33,15 @@ def main():
     print("\nSending Request...\n")
 
     response, response_time = send_request(method, url)
-
     if response is None:
         return
+
+    save_request(
+    method,
+    url,
+    response.status_code,
+    response_time
+    )
 
     print(f"Method        : {method}")
     print(f"Response Time : {response_time:.2f} seconds")

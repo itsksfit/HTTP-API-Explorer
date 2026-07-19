@@ -12,8 +12,17 @@ def main():
     print("2. POST")
     print("3. PUT")
     print("4. DELETE")
-
+    print("5. View History")
     choice = input("\nSelect Method: ")
+    if choice == "5":
+        try:
+            with open("history/requests.log", "r") as file:
+                print("\nRequest History\n")
+                print(file.read())
+        except FileNotFoundError:
+            print("No request history found.")
+
+        return
 
     methods = {
         "1": "GET",
